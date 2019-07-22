@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "",
+  password: "password",
   database: "bamazon_db"
 })
 
@@ -52,7 +52,7 @@ function viewProductByDept() {
 
 // Create a new department
 function createNewDept() {
-  console.log('======================== CREATING NEW DEPARTMENTS =========================');  //prompts to add deptName and numbers. if no val is then by default = 0
+  console.log('======================== CREATING NEW DEPARTMENTS =========================');  
   inquirer.prompt([{
     type: "input",
     name: "deptName",
@@ -84,7 +84,7 @@ function createNewDept() {
   }]).then(function (answer) {
     connection.query('INSERT INTO departments SET ?', {
       department_name: answer.deptName,
-      cost: answer.overHeadCost,
+      cost: answer.cost,
       total_sale: answer.prodSales
     }, function (err, products) {
       if (err) throw err;
